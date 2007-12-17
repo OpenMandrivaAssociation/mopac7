@@ -14,7 +14,6 @@ Source0:	http://surfnet.dl.sourceforge.net/sourceforge/mopac7/%{name}-%{version}
 URL:		http://sourceforge.net/projects/mopac7/
 License:	Public Domain
 Group:		Sciences/Chemistry
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	f2c
 
 %description
