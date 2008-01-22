@@ -1,6 +1,6 @@
 %define	name	mopac7
-%define	version	1.11
-%define	release	%mkrel 2
+%define	version	1.13
+%define	release	%mkrel 1
 
 %define	major	0
 %define	libname	%mklibname %{name}_ %major
