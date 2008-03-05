@@ -5,7 +5,7 @@
 %define	major	0
 %define	libname	%mklibname %{name}_ %major
 %define develname %mklibname %{name} -d
-%define olddevelname %mklibname %{name} %major -d
+%define olddevelname %mklibname %{name}_ %major -d
 
 Name:		%{name}
 Summary:	Semi-empirical quantum mechanics suite
@@ -20,6 +20,8 @@ Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	f2c
 BuildRequires:	libtool
+#...
+BuildRequires:	%{libname}
 
 %description
 MOPAC7 is a semi-empirical quantum-mechanics code written by James J. P.
