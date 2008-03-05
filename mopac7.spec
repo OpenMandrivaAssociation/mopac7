@@ -4,13 +4,15 @@
 
 %define	major	0
 %define	libname	%mklibname %{name}_ %major
+%define develname %mklibname %{name} -d
+%define olddevelname %mklibname %{name} %major -d
 
 Name:		%{name}
 Summary:	Semi-empirical quantum mechanics suite
 Version:	%{version}
 Release:	%{release}
 
-Source0:	http://surfnet.dl.sourceforge.net/sourceforge/mopac7/%{name}-%{version}.tar.gz
+Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version}.tar.gz
 Patch0:		mopac7-no_bundled_libtool.diff
 URL:		http://sourceforge.net/projects/mopac7/
 License:	Public Domain
@@ -28,19 +30,21 @@ of MOPAC7 to other programs.
 %package -n	%{libname}
 Summary:	Dynamic libraries from %{name}
 Group:		System/Libraries
+Provides: 	%{name} = %{version}-%{release}
 
 %description -n	%{libname}
 Dynamic libraries from %{name}.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Header files and static libraries from %{name}
 Group:		Development/C
-Requires:	%{libname} >= %{version}
-Provides:	lib%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{version}
+Provides:	%{libname}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release} 
 Obsoletes:	%{name}-devel
+Obsoletes:	%{olddevelname}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 Libraries and includes files for developing programs based on %{name}.
 
 %prep
@@ -78,7 +82,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_libdir}/*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/%{name}
 %{_libdir}/*.so
