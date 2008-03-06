@@ -20,8 +20,6 @@ Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	f2c
 BuildRequires:	libtool
-#...
-BuildRequires:	%{libname}
 
 %description
 MOPAC7 is a semi-empirical quantum-mechanics code written by James J. P.
@@ -58,7 +56,7 @@ perl -pi -e "s#-lg2c##g" libmopac7.pc.in
 rm -f configure
 libtoolize --copy --force; aclocal; autoconf
 %configure2_5x
-%make
+%make -j1
 										
 %install
 rm -rf %{buildroot}
