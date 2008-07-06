@@ -14,6 +14,8 @@ Release:	%{release}
 
 Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version}.tar.gz
 Patch0:		mopac7-no_bundled_libtool.diff
+Patch1:		01_undefined_symbol_in_so.patch
+Patch2:		03_fix_FORTRAN_source.patch
 URL:		http://sourceforge.net/projects/mopac7/
 License:	Public Domain
 Group:		Sciences/Chemistry
@@ -50,7 +52,8 @@ Libraries and includes files for developing programs based on %{name}.
 %prep
 %setup -q
 %patch0 -p0
-perl -pi -e "s#-lg2c##g" libmopac7.pc.in
+%patch1 -p1
+%patch2 -p1
 
 %build
 rm -f configure
