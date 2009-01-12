@@ -12,9 +12,6 @@ License:	Public Domain
 Group:		Sciences/Chemistry
 URL:		http://www.uku.fi/~thassine/projects/ghemical
 Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version}.tar.gz
-Patch0:		mopac7-no_bundled_libtool.diff
-Patch1:		01_undefined_symbol_in_so.patch
-Patch2:		03_fix_FORTRAN_source.patch
 
 BuildRequires:	f2c
 BuildRequires:	libtool
@@ -48,9 +45,6 @@ Libraries and includes files for developing programs based on %{name}.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p1
-%patch2 -p1
 
 %build
 rm -f configure
@@ -61,7 +55,7 @@ libtoolize --copy --force; aclocal; autoconf
 %install
 rm -rf %{buildroot}
 %makeinstall
-install -m755 src/%{name} -D %{buildroot}%{_bindir}/%{name}
+install -m755 fortran/%{name} -D %{buildroot}%{_bindir}/%{name}
 sed "s/\.\/src/\/usr\/bin/" run_mopac7 > %{buildroot}%{_bindir}/run_mopac7
 chmod 755 %{buildroot}%{_bindir}/run_mopac7
 
@@ -70,8 +64,6 @@ rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
 %endif
 
