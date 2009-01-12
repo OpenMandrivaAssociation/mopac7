@@ -15,6 +15,7 @@ Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version
 
 BuildRequires:	f2c
 BuildRequires:	libtool
+BuildRequires:	gcc-gfortran
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
