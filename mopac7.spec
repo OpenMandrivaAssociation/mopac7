@@ -1,27 +1,24 @@
-%define	name	mopac7
-%define	version	1.13
-%define	release	%mkrel 1
+Name:			mopac7
+Version:		1.14
+Release:		%mkrel 1
 
-%define	major	0
-%define	libname	%mklibname %{name}_ %major
-%define develname %mklibname %{name} -d
-%define olddevelname %mklibname %{name}_ %major -d
+%define	major		0
+%define	libname		%mklibname %{name}_ %major
+%define develname	%mklibname %{name} -d
+%define olddevelname	%mklibname %{name}_ %major -d
 
-Name:		%{name}
 Summary:	Semi-empirical quantum mechanics suite
-Version:	%{version}
-Release:	%{release}
-
+License:	Public Domain
+Group:		Sciences/Chemistry
+URL:		http://www.uku.fi/~thassine/projects/ghemical
 Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version}.tar.gz
 Patch0:		mopac7-no_bundled_libtool.diff
 Patch1:		01_undefined_symbol_in_so.patch
 Patch2:		03_fix_FORTRAN_source.patch
-URL:		http://sourceforge.net/projects/mopac7/
-License:	Public Domain
-Group:		Sciences/Chemistry
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+
 BuildRequires:	f2c
 BuildRequires:	libtool
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 MOPAC7 is a semi-empirical quantum-mechanics code written by James J. P.
