@@ -1,6 +1,6 @@
 Name:			mopac7
 Version:		1.14
-Release:		%mkrel 1
+Release:		%mkrel 2
 
 %define	major		0
 %define	libname		%mklibname %{name}_ %major
