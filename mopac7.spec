@@ -1,11 +1,11 @@
 Name:			mopac7
-Version:		1.14
-Release:		%mkrel 2
+Version:		1.15
+Release:		%mkrel 1
 
-%define	major		0
+%define	major		1
 %define	libname		%mklibname %{name}_ %major
 %define develname	%mklibname %{name} -d
-%define olddevelname	%mklibname %{name}_ %major -d
+%define olddevelname	%mklibname %{name}_ 0 -d
 
 Summary:	Semi-empirical quantum mechanics suite
 License:	Public Domain
@@ -28,6 +28,7 @@ of MOPAC7 to other programs.
 Summary:	Dynamic libraries from %{name}
 Group:		System/Libraries
 Provides: 	%{name} = %{version}-%{release}
+Obsoletes:	%{_lib}%{name}_0
 
 %description -n	%{libname}
 Dynamic libraries from %{name}.
@@ -38,7 +39,6 @@ Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{libname}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release} 
-Obsoletes:	%{name}-devel
 Obsoletes:	%{olddevelname}
 
 %description -n	%{develname}
@@ -48,10 +48,10 @@ Libraries and includes files for developing programs based on %{name}.
 %setup -q
 
 %build
-rm -f configure
-libtoolize --copy --force; aclocal; autoconf
+#rm -f configure
+#libtoolize --copy --force; aclocal; autoconf
 %configure2_5x
-%make -j1
+%make
 										
 %install
 rm -rf %{buildroot}
@@ -77,7 +77,7 @@ rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root)
