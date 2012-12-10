@@ -1,6 +1,6 @@
 Name:			mopac7
 Version:		1.15
-Release:		%mkrel 2
+Release:		3
 
 %define	major		1
 %define	libname		%mklibname %{name}_ %major
@@ -16,7 +16,6 @@ Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version
 BuildRequires:	f2c
 BuildRequires:	libtool
 BuildRequires:	gcc-gfortran
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 MOPAC7 is a semi-empirical quantum-mechanics code written by James J. P.
@@ -54,19 +53,10 @@ Libraries and includes files for developing programs based on %{name}.
 %make
 										
 %install
-rm -rf %{buildroot}
 %makeinstall
 install -m755 fortran/%{name} -D %{buildroot}%{_bindir}/%{name}
 sed "s/\.\/src/\/usr\/bin/" run_mopac7 > %{buildroot}%{_bindir}/run_mopac7
 chmod 755 %{buildroot}%{_bindir}/run_mopac7
-
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %files
 %defattr(-,root,root)
@@ -84,5 +74,68 @@ rm -rf %{buildroot}
 %{_includedir}/%{name}
 %{_libdir}/*.so
 %{_libdir}/*.a
-%{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
+
+
+%changelog
+* Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 1.15-2mdv2011.0
++ Revision: 612930
+- the mass rebuild of 2010.1 packages
+
+* Fri Jan 08 2010 Emmanuel Andry <eandry@mandriva.org> 1.15-1mdv2010.1
++ Revision: 487766
+- New version 1.15
+- check major
+- fix major
+- obsolete wrong major lib package
+
+* Mon Sep 14 2009 Thierry Vignaud <tv@mandriva.org> 1.14-2mdv2010.0
++ Revision: 440107
+- rebuild
+
+* Mon Jan 12 2009 Guillaume Bedot <littletux@mandriva.org> 1.14-1mdv2009.1
++ Revision: 328758
+- Fix buildrequires
+- Fix install
+- Dropped outdated and already included patches
+- Release 1.14
+
+* Sun Jul 06 2008 Funda Wang <fwang@mandriva.org> 1.13-1mdv2009.0
++ Revision: 232072
+- add ubuntu patches to make it build
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Thu Mar 06 2008 Guillaume Bedot <littletux@mandriva.org> 1.13-1mdv2008.1
++ Revision: 180322
+- library policy
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - added P0 to try and fix the build...
+
+  + Austin Acton <austin@mandriva.org>
+    - new version
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - import mopac7
+
+
+* Tue Aug 22 2006 Per Øyvind Karlsen <pkarlsen@mandriva.com> 1.11-2mdv2007.0
+- remove -lg2c from pkgconfig file
+
+* Tue Aug 22 2006 Per Øyvind Karlsen <pkarlsen@mandriva.com> 1.11-1mdv2007.0
+- 1.11
+- %%mkrel
+- fix mixed-use-of-spaces-and-tabs
+
+* Sun Dec 04 2005 Austin Acton <austin@mandriva.org> 1.10-1mdk
+- New release 1.10
+
+* Fri Aug 12 2005 Austin Acton <austin@mandrake.org> 1.00-1mdk
+- initial package
+
