@@ -10,7 +10,7 @@ Release:		4
 Summary:	Semi-empirical quantum mechanics suite
 License:	Public Domain
 Group:		Sciences/Chemistry
-URL:		http://www.uku.fi/~thassine/projects/ghemical
+URL:		https://www.uku.fi/~thassine/projects/ghemical
 Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version}.tar.gz
 
 BuildRequires:	f2c
