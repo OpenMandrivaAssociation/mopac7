@@ -13,6 +13,11 @@ Group:		Sciences/Chemistry
 URL:		https://www.uku.fi/~thassine/projects/ghemical
 Source0:	http://www.uku.fi/~thassine/projects/download/current/%{name}-%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	f2c
 BuildRequires:	libtool
 BuildRequires:	gcc-gfortran
